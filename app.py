@@ -3,25 +3,17 @@ import requests
 from datetime import datetime
 from flask import Flask, request, redirect, url_for, send_from_directory, render_template
 from werkzeug.utils import secure_filename
-from dotenv import load_dotenv
-
-# تحميل المتغيرات البيئية
-load_dotenv()
+from config import config
 
 # إنشاء التطبيق
 app = Flask(__name__, template_folder='templates')
 
-# إعدادات التطبيق
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-secret-key')
-app.config['UPLOAD_FOLDER'] = os.getenv('UPLOAD_FOLDER', 'uploads')
-app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  # 5MB
+# تحميل الإعدادات
+config_name = os.getenv('FLASK_ENV', 'development')
+app.config.from_object(config[config_name])
 
-# إعدادات Telegram
-TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
-TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
-
-if not TELEGRAM_TOKEN or not TELEGRAM_CHAT_ID:
-    raise ValueError('يجب تعيين TELEGRAM_TOKEN و TELEGRAM_CHAT_ID في متغيرات البيئة')
+# التحقق من صحة الإعدادات
+config[config_name].validate_config()
 
 # إنشاء مجلد التحميلات
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
@@ -58,10 +50,10 @@ def submit_report():
     file_size = image.tell()
     image.seek(0)
 
-    if file_size > 5 * 1024 * 1024:
+    if file_size > app.config['MAX_CONTENT_LENGTH']:
         return redirect(url_for('home', error='حجم الصورة كبير جداً. الحد الأقصى 5MB'))
 
-    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = secure_filename(f"{timestamp}_{image.filename}")
     filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
 
@@ -81,14 +73,16 @@ def submit_report():
 """
 
     try:
-        text_url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-        text_data = {'chat_id': TELEGRAM_CHAT_ID, 'text': telegram_message, 'parse_mode': 'Markdown'}
+        # إرسال الرسالة النصية
+        text_url = f"https://api.telegram.org/bot{app.config['TELEGRAM_TOKEN']}/sendMessage"
+        text_data = {'chat_id': app.config['TELEGRAM_CHAT_ID'], 'text': telegram_message, 'parse_mode': 'Markdown'}
         requests.post(text_url, json=text_data)
 
-        photo_url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendPhoto"
+        # إرسال الصورة
+        photo_url = f"https://api.telegram.org/bot{app.config['TELEGRAM_TOKEN']}/sendPhoto"
         with open(filepath, 'rb') as photo:
             files = {'photo': photo}
-            data = {'chat_id': TELEGRAM_CHAT_ID}
+            data = {'chat_id': app.config['TELEGRAM_CHAT_ID']}
             requests.post(photo_url, files=files, data=data)
 
         return redirect(url_for('home', success='تم استلام البلاغ بنجاح!'))
@@ -117,4 +111,4 @@ def add_header(response):
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=os.getenv('FLASK_ENV') == 'development')
+    app.run(host='0.0.0.0', port=port, debug=app.config['DEBUG'])
