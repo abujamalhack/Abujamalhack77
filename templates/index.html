@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام التبليغ الإلكتروني - أبو جمال عبد الناصر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- الشريط العلوي -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">أبو جمال عبد الناصر</div>
+            </div>
+            <nav class="nav-links">
+                <a href="#"><i class="fas fa-home"></i> الرئيسية</a>
+                <a href="#report"><i class="fas fa-flag"></i> التبليغ</a>
+                <a href="#features"><i class="fas fa-shield-alt"></i> الحماية</a>
+                <a href="#"><i class="fas fa-info-circle"></i> حول النظام</a>
+                <a href="#"><i class="fas fa-envelope"></i> تواصل معنا</a>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- قسم البطل -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="animate">نظام التبليغ الإلكتروني المتكامل</h1>
+            <p class="animate delay-1">
+                نظام متطور لحماية الأفراد والمجتمع من التهديدات الإلكترونية، الابتزاز، والمحتوى المسيء.
+                نحن هنا لنضمن لك بيئة إلكترونية آمنة ومحمية بكل الوسائل المتاحة.
+            </p>
+            <div class="hero-btns">
+                <a href="#report" class="btn btn-primary animate delay-2 pulse">
+                    <i class="fas fa-flag"></i> تبليغ فوري
+                </a>
+                <a href="#features" class="btn btn-secondary animate delay-3">
+                    <i class="fas fa-info-circle"></i> تعرف على المزيد
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- قسم النموذج -->
+    <section id="report" class="report-section">
+        <div class="section-title">
+            <h2>نموذج التبليغ الإلكتروني</h2>
+            <p>ساعدنا في جعل الإنترنت مكاناً أكثر أماناً للجميع</p>
+        </div>
+        
+        <form action="/report" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user"></i> اسم المبلغ</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="أدخل اسمك الكامل" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> البريد الإلكتروني</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="example@domain.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="type"><i class="fas fa-exclamation-triangle"></i> نوع البلاغ</label>
+                <select id="type" name="type" class="form-control" required>
+                    <option value="" disabled selected>اختر نوع البلاغ</option>
+                    <option value="تهديد">تهديد مباشر</option>
+                    <option value="ابتزاز">ابتزاز إلكتروني</option>
+                    <option value="تنمر">تنمر أو مضايقة</option>
+                    <option value="محتوى غير لائق">محتوى غير لائق</option>
+                    <option value="انتحال شخصية">انتحال شخصية</option>
+                    <option value="محتوى مسيء">محتوى مسيء</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="image"><i class="fas fa-image"></i> رفع الصورة</label>
+                <div class="file-upload">
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                    <label class="file-upload-label" for="image">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>انقر لرفع الصورة أو اسحبها هنا</span>
+                        <small>الحجم الأقصى: 5MB (الصيغ المدعومة: JPG, PNG, GIF)</small>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="details"><i class="fas fa-file-alt"></i> تفاصيل إضافية</label>
+                <textarea id="details" name="details" class="form-control" placeholder="أدخل أي تفاصيل إضافية قد تساعد في معالجة البلاغ"></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i> إرسال البلاغ
+            </button>
+        </form>
+    </section>
+    
+    <!-- قسم الميزات -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>مميزات نظامنا</h2>
+                <p>نقدم لكم أفضل الحلول لحماية بياناتكم ومحتواكم</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>حماية متكاملة</h3>
+                    <p>نظام حماية متكامل يضمن أمان بياناتك ومعلوماتك الشخصية من أي اختراقات أو تسريبات</p>
+                </div>
+                
+                <div class="feature-card animate delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>استجابة فورية</h3>
+                    <p>فريق متخصص للاستجابة الفورية للبلاغات واتخاذ الإجراءات اللازمة خلال 24 ساعة</p>
+                </div>
+                
+                <div class="feature-card animate delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>رفع مباشر للصور</h3>
+                    <p>إمكانية رفع الصور مباشرة من جهازك مع حفظ آمن على خوادمنا المشفرة</p>
+                </div>
+                
+                <div class="feature-card animate delay-3">
+                    <div class="feature-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <h3>إشعارات تيليجرام</h3>
+                    <p>إرسال فوري للبلاغات والصور عبر بوت تيليجرام خاص لضمان المتابعة الفورية</p>
+                </div>
+                
+                <div class="feature-card animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>سرية تامة</h3>
+                    <p>حماية هوية المبلغين وضمان السرية التامة للمعلومات المقدمة</p>
+                </div>
+                
+                <div class="feature-card animate delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>دعم مجتمعي</h3>
+                    <p>مساهمة فعالة في حماية المجتمع وإنشاء بيئة إلكترونية آمنة للجميع</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- قسم الحقوق -->
+    <section class="rights-section">
+        <div class="container rights-content">
+            <h2>حقوق الملكية والحماية</h2>
+            <p>
+                هذا النظام هو ملكية فكرية حصرية لـ "أبو جمال عبد الناصر". جميع الحقوق محفوظة لكل محتويات النظام
+                بما في ذلك الكود المصدر، التصميم، والوظائف. يحظر نسخ أو تعديل أو توزيع أي جزء من النظام دون
+                إذن كتابي مسبق من المالك.
+            </p>
+            <p>
+                يتم التعامل مع جميع البلاغات بسرية تامة وفقًا لأعلى معايير الحماية والخصوصية. نحن نضمن حماية
+                بيانات المستخدمين وعدم مشاركتها مع أي جهات خارجية دون موافقة صريحة.
+            </p>
+            
+            <div class="signature">أبو جمال عبد الناصر</div>
+        </div>
+    </section>
+    
+    <!-- التذييل -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن النظام</h3>
+                    <p>نظام متكامل للتبليغ عن التهديدات الإلكترونية والمحتوى المسيء، يوفر حماية فورية وضمان لسرية المعلومات.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="#report"><i class="fas fa-chevron-left"></i> نموذج التبليغ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> سياسة الخصوصية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> شروط الاستخدام</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>اتصل بنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> info@nasser-system.com</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +966 55 123 4567</a></li>
+                        <li><a href="#"><i class="fab fa-telegram"></i> @NasserSupportBot</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة © 2025 نظام <strong>أبو جمال عبد الناصر</strong> للتبليغ الإلكتروني</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+              </html>
