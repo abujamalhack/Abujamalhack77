@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج التبليغ - نظام التبليغ الإلكتروني</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- الشريط العلوي -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">أبو جمال عبد الناصر</div>
+            </div>
+            <nav class="nav-links">
+                <a href="/"><i class="fas fa-home"></i> الرئيسية</a>
+                <a href="#report"><i class="fas fa-flag"></i> التبليغ</a>
+                <a href="#features"><i class="fas fa-shield-alt"></i> الحماية</a>
+                <a href="#"><i class="fas fa-info-circle"></i> حول النظام</a>
+                <a href="#"><i class="fas fa-envelope"></i> تواصل معنا</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- قسم النموذج -->
+    <section id="report" class="report-section">
+        <div class="section-title">
+            <h2>نموذج التبليغ الإلكتروني</h2>
+            <p>ساعدنا في جعل الإنترنت مكاناً أكثر أماناً للجميع</p>
+        </div>
+        
+        <form action="/submit_report" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user"></i> اسم المبلغ</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="أدخل اسمك الكامل" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> البريد الإلكتروني</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="example@domain.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="type"><i class="fas fa-exclamation-triangle"></i> نوع البلاغ</label>
+                <select id="type" name="type" class="form-control" required>
+                    <option value="" disabled selected>اختر نوع البلاغ</option>
+                    <option value="تهديد">تهديد مباشر</option>
+                    <option value="ابتزاز">ابتزاز إلكتروني</option>
+                    <option value="تنمر">تنمر أو مضايقة</option>
+                    <option value="محتوى غير لائق">محتوى غير لائق</option>
+                    <option value="انتحال شخصية">انتحال شخصية</option>
+                    <option value="محتوى مسيء">محتوى مسيء</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="image"><i class="fas fa-image"></i> رفع الصورة</label>
+                <div class="file-upload">
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                    <label class="file-upload-label" for="image">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>انقر لرفع الصورة أو اسحبها هنا</span>
+                        <small>الحجم الأقصى: 5MB (الصيغ المدعومة: JPG, PNG, GIF)</small>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="details"><i class="fas fa-file-alt"></i> تفاصيل إضافية</label>
+                <textarea id="details" name="details" class="form-control" placeholder="أدخل أي تفاصيل إضافية قد تساعد في معالجة البلاغ"></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i> إرسال البلاغ
+            </button>
+        </form>
+    </section>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
